@@ -25,7 +25,10 @@ var GreeterForm = React.createClass({
     return (
       <div>
         <form onSubmit={this.onFormSubmit}>
-          <input type="text" ref="name"></input>
+          <input type="text" ref="name" placeholder="Enter Name"></input>
+          <br></br>
+          <textarea type="text" ref="message" placeholder="Enter Message"></textarea>
+          <br></br>
           <button>Set Name</button>
         </form>
       </div>
@@ -62,9 +65,8 @@ var Greeter = React.createClass({
   }
 });
 
-var firstName = 'Sal';
-var myMsg;
+
 ReactDOM.render(
-        <Greeter name={firstName} msg={myMsg}/>,
+        <Greeter/>,
         document.getElementById('app')
       );
