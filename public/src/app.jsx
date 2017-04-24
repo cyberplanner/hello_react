@@ -1,8 +1,32 @@
+var GreeterMessage = React.createClass({
+  render: function() {
+    return (
+      <div>
+        <h1>Some H1</h1>
+        <p>Some Paragraph</p>
+      </div>
+    );
+  }
+});
+
+var GreeterForm = React.createClass({
+  render: function() {
+    return (
+      <div>
+        <form>
+          <input type="text" ref="name"></input>
+          <button>Set Name</button>
+        </form>
+      </div>
+    );
+  }
+});
+
 var Greeter = React.createClass({
   getDefaultProps: function() {
     return {
       name: 'React',
-      msg: 'This is from a component!'
+      msg: 'This is from a component'
     };
   },
   getInitialState() {
@@ -29,12 +53,16 @@ var Greeter = React.createClass({
     return (
       <div>
         <h1>Hello {name}!</h1>
-        <p>{msg}</p>
+        <p>{msg + '!!'}</p>
+
+        <GreeterMessage/>
 
         <form onSubmit={this.onButtonClick}>
           <input type="text" ref="name"></input>
           <button>Set Name</button>
         </form>
+
+        <GreeterForm/>
       </div>
     );
   }
