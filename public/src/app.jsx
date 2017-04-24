@@ -14,22 +14,33 @@ var GreeterMessage = React.createClass({
 var GreeterForm = React.createClass({
   onFormSubmit: function(e) {
     e.preventDefault();
+
+    var updates = {}; // updades hash will change on lines 24 and 29
     var name = this.refs.name.value;
+    var msg = this.refs.msg.value;
 
     if (name.length > 0) {
       this.refs.name.value = '';
-      this.props.onNewName(name);
+      updates.name = name;
     }
+
+    if (msg.length > 0) {
+      this.refs.msg.value = '';
+      updates.msg = msg;
+    }
+    this.props.onNewData(updates); // passing the updated hash here to onNewData (Greeter.handleNewData)
   },
   render: function() {
     return (
       <div>
         <form onSubmit={this.onFormSubmit}>
-          <input type="text" ref="name" placeholder="Enter Name"></input>
-          <br></br>
-          <textarea type="text" ref="message" placeholder="Enter Message"></textarea>
-          <br></br>
-          <button>Set Name</button>
+          <div>
+            <input type="text" ref="name" placeholder="Enter Name"></input>
+          </div>
+          <div>
+            <textarea ref="msg" placeholder="Enter Message"></textarea>
+          </div>
+          <button>Update</button>
         </form>
       </div>
     );
@@ -45,21 +56,20 @@ var Greeter = React.createClass({
   },
   getInitialState() {
     return {
-      name: this.props.name
+      name: this.props.name,
+      msg: this.props.msg
     };
   },
-  handleNewName: function(name) {
-    this.setState({
-      name: name
-    });
+  handleNewData: function(updates) {
+    this.setState(updates); // since setState takes a hash anyway we will pass the updates hash here as it is
   },
   render: function() {
     var name = this.state.name;
-    var msg = this.props.msg;
+    var msg = this.state.msg;
     return (
       <div>
         <GreeterMessage name={name} msg={msg}/>
-        <GreeterForm onNewName={this.handleNewName}/>
+        <GreeterForm onNewData={this.handleNewData}/>
       </div>
     );
   }
