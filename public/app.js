@@ -1,3 +1,3 @@
 var greeter = require('./components/Greeter');
 
-greeter("From module");
+greeter("Testing webpack!");

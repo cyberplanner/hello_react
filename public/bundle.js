@@ -46,7 +46,7 @@
 
 	var greeter = __webpack_require__(1);
 
-	greeter("From module");
+	greeter("Testing webpack!");
 
 
 /***/ },
